@@ -1,0 +1,11 @@
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\bin\Debug\net6.0\ProyectoSucursal.Models.deps.json
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\bin\Debug\net6.0\ProyectoSucursal.Models.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\bin\Debug\net6.0\ProyectoSucursal.Models.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.AssemblyInfoInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.AssemblyInfo.cs
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.csproj.CoreCompileInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\refint\ProyectoSucursal.Models.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ProyectoSucursal.Models.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.Models\obj\Debug\net6.0\ref\ProyectoSucursal.Models.dll

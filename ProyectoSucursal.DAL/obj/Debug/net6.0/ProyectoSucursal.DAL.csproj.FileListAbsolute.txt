@@ -1,0 +1,17 @@
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.DAL.deps.json
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.DAL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.DAL.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.AssemblyInfoInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.AssemblyInfo.cs
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.csproj.CoreCompileInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\refint\ProyectoSucursal.DAL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ref\ProyectoSucursal.DAL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.DAL.runtimeconfig.json
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.csproj.AssemblyReference.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.genruntimeconfig.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.Models.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\bin\Debug\net6.0\ProyectoSucursal.Models.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.DAL\obj\Debug\net6.0\ProyectoSucursal.DAL.csproj.CopyComplete

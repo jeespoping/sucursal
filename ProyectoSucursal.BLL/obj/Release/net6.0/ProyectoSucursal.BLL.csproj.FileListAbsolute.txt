@@ -1,0 +1,17 @@
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.BLL.deps.json
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.BLL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.BLL.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.DAL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.Models.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.DAL.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\bin\Release\net6.0\ProyectoSucursal.Models.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.csproj.AssemblyReference.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.AssemblyInfoInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.AssemblyInfo.cs
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.csproj.CoreCompileInputs.cache
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.csproj.CopyComplete
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\refint\ProyectoSucursal.BLL.dll
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ProyectoSucursal.BLL.pdb
+C:\Users\jelof\source\repos\SolutionSucursal\ProyectoSucursal.BLL\obj\Release\net6.0\ref\ProyectoSucursal.BLL.dll

@@ -1,0 +1,426 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-header">Sucursal</div>
+            <div class="card-body">
+                <button class="btn btn-success" id="btnNuevo">Nuevo Tecnico</button>
+
+                <hr />
+
+                <table class="table table-striped" id="tbSucursal">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Sueldo Base</th>
+                            <th>Sucursal</th>
+                            <th># Elementos</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Inicio Modal-->
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle Tecnico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="txtId" value="0" />
+                <div class="mb-2">
+                    <label>Codigo</label>
+                    <input type="text" class="form-control" id="txtCodigo" />
+                </div>
+                <div class="mb-2">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" id="txtNombre" />
+                </div>
+                <div class="mb-2">
+                    <label>Sueldo base</label>
+                    <input type="number" class="form-control" id="txtSueldo" />
+                </div>
+                <div class="mb-2">
+                    <label>Sucursal</label>
+                    <select class="form-select" aria-label="Default select example" id="selectSucursal">
+                        
+                    </select>
+                </div>
+                <label>Ingresar elementos</label>
+                <div class="row">
+                    <div class="col">
+                        <label>Cantidad</label>
+                        <input type="number" class="form-control" id="txtCantidad" />
+                    </div>
+                    <div class="col">
+                        <label>Elemento</label>
+                        <select class="form-select" aria-label="Default select example" id="selectElemento">
+                        </select>
+                    </div>
+                    <div class="col mt-auto">
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btnGuardarElem">Guardar elemento</button>
+                    </div>
+                </div>
+                <table class="table table-striped" id="tbElementos">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnGuardar">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Fin Modal-->
+
+@section Scripts{
+    <script>
+        let Modelo_base = {
+            id: 0,
+            codigo:'',
+            nombre: "",
+            sueldoBase: "",
+            idSucursal: "",
+        }
+
+        let index = 1;
+
+        $(document).ready(() => {
+            listaTecnicos();
+        })
+
+        function mostrarModal(modelo) {
+            $('#tbElementos tbody').html("")
+            listarSucursales(modelo);
+            listarElementos();
+            index = 1;
+            resetElemento();
+
+            $('.modal').modal('show');
+
+        }
+
+       
+        
+
+        $('#btnNuevo').click(() => {
+            Modelo_base = {
+                id: 0,
+                codigo: '',
+                nombre: "",
+                sueldoBase: "",
+                idSucursal: "",
+            }
+            mostrarModal(Modelo_base)
+        })
+
+        $('#btnGuardar').click(() => {
+            let NuevoModelo = Modelo_base
+
+            NuevoModelo["id"] = $('#txtId').val();
+            NuevoModelo["codigo"] = $('#txtCodigo').val();
+            NuevoModelo["nombre"] = $('#txtNombre').val();
+            NuevoModelo["sueldoBase"] = $('#txtSueldo').val();
+            NuevoModelo["idSucursal"] = $('#selectSucursal').val();
+
+            let Elementos = obtenerElementos();
+
+            if ( !Validation()) {
+                if ($("#txtId").val() == "0") {
+                    fetch("Home/InsertTecnico", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json;charset=utf-8"
+                        },
+                        body: JSON.stringify(NuevoModelo)
+                    })
+                        .then((response) => {
+                            return response.ok ? response.json() : Promise.reject(response)
+                        })
+                        .then((dataJson) => {
+                            if (dataJson.valor) {
+                                Elementos.forEach((item) => {
+                                    fetch('Home/InsertAsicnacion', {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json;charset=utf-8"
+                                        },
+                                        body: JSON.stringify(item)
+                                    }).then((response) => {
+                                        return response.ok ? response.json() : Promise.reject(response)
+                                    })
+                                })
+                                alert("Registrado");
+                                $(".modal").modal('hide');
+                                listaTecnicos();
+                            }
+                        })
+                } else {
+                    fetch("Home/UpdateTecnico", {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json;charset=utf-8"
+                        },
+                        body: JSON.stringify(NuevoModelo)
+                    })
+                        .then((response) => {
+                            return response.ok ? response.json() : Promise.reject(response)
+                        })
+                        .then((dataJson) => {
+                            if (dataJson.valor) {
+                                Elementos.forEach((item) => {
+                                    fetch('Home/InsertAsicnacionByID?id=' + NuevoModelo.id, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json;charset=utf-8"
+                                        },
+                                        body: JSON.stringify(item)
+                                    }).then((response) => {
+                                        return response.ok ? response.json() : Promise.reject(response)
+                                    })
+                                })
+                                alert("Editado");
+                                $(".modal").modal('hide');
+                                listaTecnicos();
+                            }
+                        })
+                }
+            }else{
+                alert(Validation())
+            }
+
+            
+        })
+
+        function listarSucursales(modelo) {
+            fetch("Home/list")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response)
+                })
+                .then((dataJson) => {
+                    $('#selectSucursal').html("");
+                   
+                    dataJson.forEach((item) => {
+                        $('#selectSucursal').append(
+                            $("<option>").val(item.codigo).text(item.nombre)
+                        )
+                    })
+
+                    $('#txtId').val(modelo.id);
+                    $('#txtCodigo').val(modelo.codigo);
+                    $('#txtNombre').val(modelo.nombre);
+                    $('#txtSueldo').val(modelo.sueldoBase);
+                    $("#selectSucursal option[value='" + modelo.idSucursal + "']").attr("selected", true);
+                })
+        }
+
+        function listarElementos() {
+            fetch("Home/ListElementos")
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response)
+                })
+                .then((dataJson) => {
+                    $('#selectElemento').html("");
+
+                    dataJson.forEach((item) => {
+                        $('#selectElemento').append(
+                            $("<option>").val(item.codigo).text(item.nombre)
+                        )
+                    })
+                })
+        }
+
+        function listaTecnicos() {
+            fetch("Home/ListTecnico")
+            .then((response) => {
+                return response.ok ? response.json() : Promise.reject(response)
+            })
+            .then((dataJson) => {
+                $('#tbSucursal tbody').html("");
+                    console.log(dataJson)
+                dataJson.forEach((item) => {
+                    $('#tbSucursal tbody').append(
+                        $("<tr>").append(
+                            $("<td>").text(item.codigo),
+                            $("<td>").text(item.nombre),
+                            $("<td>").text(item.sueldoBase),
+                            $("<td>").text(item.idSucursalNavigation.nombre),
+                                $("<td>").text(item.asignacions.length),
+                            $("<td>").append(
+                                $("<button>").addClass("btn btn-primary btn-sm me-2 btn-editar").data("model", item).text("Editar"),
+                                $("<button>").addClass("btn btn-danger btn-sm btn-eliminar").data("id", item.id).text("Eliminar")
+                            )
+                        )
+                    )
+                })
+            })
+        }
+
+        function listarAsicnaciones(id) {
+            fetch("Home/ListAsignaciones?id="+id)
+                .then((response) => {
+                    return response.ok ? response.json() : Promise.reject(response)
+                })
+                .then((dataJson) => {
+                    $('#tbElementos tbody').html("");
+                    dataJson.forEach((item) => {
+                        $('#tbElementos tbody').append(
+                            $("<tr>").append(
+                                $("<td>").text(item.idElemento),
+                                $("<td>").text(item.idElementoNavigation.nombre),
+                                $("<td>").text(item.cantidad),
+                                $("<td>").append(
+                                    $("<button>").addClass("btn btn-danger btn-sm btn-eliminarElemento").data("id", item.id).text("Eliminar")
+                                )
+                            )
+                        )
+                    })
+                })
+            
+        }
+
+        $('#tbSucursal tbody').on("click", ".btn-editar", function () {
+            let contacto = $(this).data("model")
+            mostrarModal(contacto)
+            listarAsicnaciones(contacto.id)
+        })
+
+        $('#tbElementos tbody').on("click", ".btn-eliminarElemento", function () {
+            $(this).closest("tr").remove();
+        })
+
+        $('#tbSucursal tbody').on("click", ".btn-eliminar", function () {
+            let idTecnico = $(this).data("id")
+            let resultado = window.confirm("Desea eliminar la sucursal?");
+
+            if (resultado) {
+                fetch("Home/delete?id=" + idTecnico, {
+                    method: "DELETE"
+                })
+                    .then((response) => {
+                        return response.ok ? response.json() : Promise.reject(response)
+                    })
+                    .then((dataJson) => {
+                        if (dataJson.valor) {
+                            listaTecnicos()
+                        }
+                    })
+            }
+        })
+
+        
+        $('#btnGuardarElem').click(() => {
+            if (!validationEle()) {
+                $('#tbElementos tbody').append(
+                    $("<tr>").append(
+                        $("<td>").text($('#selectElemento').val()),
+                        $("<td>").text($('#selectElemento').find("option:selected").text()),
+                        $("<td>").text($('#txtCantidad').val()),
+                        $("<td>").append(
+                            $("<button>").addClass("btn btn-danger btn-sm btn-eliminarElemento").data("id", index).text("Eliminar")
+                        )
+                    )
+                )
+
+                index++;
+                resetElemento()
+            } else {
+                alert(validationEle())
+            }
+            
+        })
+
+        
+
+        function resetElemento() {
+            $('#selectElemento').val('')
+            $('#txtCantidad').val('')
+        }
+
+        function obtenerElementos(){
+            var datos = [];
+            $('#tbElementos tbody tr').each(function () {
+
+                var idElemento = $(this).find("td:eq(0)").text();
+                var nombre = $(this).find("td:eq(1)").text();
+                var cantidad = parseFloat($(this).find("td:eq(2)").text());
+                
+                datos.push({
+                    idElemento: idElemento,
+                    cantidad: cantidad
+                });
+            });
+            return datos;
+        }
+
+        function Validation() {
+            var codigo = $('#txtCodigo').val()
+            var nombre = $('#txtNombre').val()
+            var sueldo = $('#txtSueldo').val()
+            var sucursal = $('#selectElemento').val()
+
+            var expresionR = /^[a-zA-Z0-9]*$/;
+            var ExpresionRnumero = /^[0-9.]+$/;
+
+           
+
+            if (codigo == '' || !expresionR.test(codigo)) {
+                return 'Por favor introduzca un codigo valido'
+            } else if (nombre == '') return 'Por favor introduzca un nombre valido'
+            else if (sueldo == '' || !ExpresionRnumero.test(sueldo) ) return 'Por favor introduzca un sueldo valido'
+            else if (sucursal == '') return 'Por favor introduzca una sucursal valida'
+            else if ( obtenerElementos().length == 0) return 'Por favor introduzca al menos un elemento'
+
+            
+            return false;
+        }
+
+        function validationEle(){
+            var cantidad = $('#txtCantidad').val()
+            var elemento = $('#selectElemento').val()
+
+            var ExpresionRnumero = /^[0-9]+$/;
+
+  
+
+            if (cantidad == '' || cantidad > 10 || !ExpresionRnumero.test(cantidad)) return 'Por favor introduzca una cantidad valida'
+            else if (elemento == '' || !ExpresionRnumero.test(elemento)) return 'Por favor seleccione un elemento'
+
+            var elementoList = obtenerElementos().find( item => {
+                return (item.idElemento == elemento) 
+            })
+
+            if (elementoList) return 'Por favor seleccione un elemento que no este en la lista'
+
+            return false;
+        }
+
+
+
+
+    </script>
+}
